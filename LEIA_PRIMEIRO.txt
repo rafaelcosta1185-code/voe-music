@@ -1,0 +1,6 @@
+VOE MUSIC V11
+Adicionado ao repertório:
+- Link do YouTube
+- Link do Spotify
+- Botões diretos para abrir cada música
+- Também aparece link rápido dentro da escala
