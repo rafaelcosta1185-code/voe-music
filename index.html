@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>VOE Music V15</title><meta name="theme-color" content="#0f9ed8"><link rel="manifest" href="/manifest.webmanifest">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#f4f8fb;color:#142134}button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}.auth{min-height:100vh;display:grid;place-items:center;padding:24px;background:#0f9ed8}.authbox{width:min(420px,100%);background:white;border-radius:28px;padding:24px;box-shadow:0 24px 70px #075b8f55}.logo{text-align:center;color:#0f9ed8;font-size:34px;font-weight:900;line-height:.85;margin-bottom:20px}.logo small{display:block;font-size:14px;letter-spacing:.18em;margin-bottom:6px}.tabs{display:flex;background:#eef6fa;padding:4px;border-radius:14px;margin-bottom:16px}.tab{flex:1;border:0;background:transparent;padding:11px;border-radius:11px}.tab.on{background:white;color:#0877bd;font-weight:800;box-shadow:0 3px 10px #0001}label{display:block;font-size:12px;font-weight:700;color:#5b7281;margin:10px 0 5px}input,select,textarea{width:100%;border:1px solid #d8e7ef;border-radius:14px;padding:12px;background:white;color:#142134}.btn{border:0;border-radius:13px;padding:11px 14px;font-weight:800}.primary{background:#0f9ed8;color:white}.ghost{background:white;border:1px solid #d8e7ef;color:#27657f}.danger{background:#fff0f0;color:#c33434}.wide{width:100%;margin-top:14px}.auth-links{display:flex;justify-content:space-between;gap:8px;margin-top:12px;flex-wrap:wrap}.linkbtn{border:0;background:transparent;color:#0877bd;padding:4px 0;font-size:12px;font-weight:800}.auth-note{background:#edf8fd;border:1px solid #cfeaf6;color:#426c80;border-radius:13px;padding:10px;margin-top:12px;font-size:12px}.auth-error{background:#fff1f1;border:1px solid #f1caca;color:#aa3333;border-radius:13px;padding:10px;margin-top:12px;font-size:12px}.password-wrap{position:relative}.password-wrap input{padding-right:50px}.pw-toggle{position:absolute;right:7px;top:7px;border:0;background:#eef6fa;border-radius:9px;padding:6px 8px;color:#527181}.session-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;opacity:.85}.app{min-height:100vh;padding-bottom:84px}header{position:sticky;top:0;z-index:20;background:#0f9ed8;color:white;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 5px 20px #0877bd44}header b{font-size:18px}header small{display:block;opacity:.75}.topbtn{border:1px solid #ffffff44;background:#ffffff18;color:white;border-radius:11px;padding:8px 10px}main{max-width:980px;margin:auto;padding:16px}.hero{background:linear-gradient(135deg,#0f9ed8,#0877bd);color:white;padding:20px;border-radius:24px;box-shadow:0 14px 38px #0877bd33}.hero h2{margin:0 0 5px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.metric,.card{background:white;border:1px solid #dceaf2;border-radius:20px;box-shadow:0 8px 24px #315b730d}.metric{padding:14px}.metric strong{display:block;font-size:24px;color:#0877bd}.metric span{font-size:11px;color:#78909e}.section{margin-top:20px}.section h3{margin:0 0 10px}.list{display:grid;gap:10px}.event{padding:15px}.eventtop{display:flex;justify-content:space-between;gap:10px}.event h4{margin:0 0 4px}.muted{color:#758b99;font-size:12px}.pill{display:inline-block;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:800;background:#edf7fb;color:#0877bd}.pending{background:#fff4d8;color:#9b6900}.confirmed{background:#e9f8ee;color:#1f8742}.declined{background:#fff0f0;color:#c33434}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.teamgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.group{padding:14px}.person{padding:8px 0;border-bottom:1px solid #edf3f6}.person:last-child{border:0}.song{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid #edf3f6}.song:last-child{border:0}.key{min-width:38px;text-align:center;padding:5px 8px;border-radius:999px;background:#e9f7fd;color:#0877bd;font-weight:900}.media-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}.media-btn{border:1px solid #d8e7ef;border-radius:999px;padding:7px 10px;background:white;font-size:11px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;gap:5px}.yt{color:#c62828}.sp{color:#138a43}nav{position:fixed;left:0;right:0;bottom:0;background:#fffffffa;border-top:1px solid #dceaf2;display:flex;justify-content:center;padding:7px 4px calc(7px + env(safe-area-inset-bottom));z-index:30}nav button{min-width:66px;border:0;background:transparent;color:#78909e;padding:7px;font-size:11px}nav button.on{color:#0877bd;font-weight:800}.page{display:none}.page.on{display:block}.adminform{padding:16px;margin-bottom:12px}.row{display:grid;grid-template-columns:1fr 1fr;gap:9px}.msgbox{height:360px;overflow:auto;padding:12px;background:white;border:1px solid #dceaf2;border-radius:18px;display:flex;flex-direction:column;gap:8px}.msg{max-width:80%;background:#eef5f9;border-radius:14px;padding:9px 11px;font-size:12px}.msg.me{align-self:flex-end;background:#0f9ed8;color:white}.role-master{background:#fff1cc;color:#9b6800}.role-admin{background:#e8f2ff;color:#1664a8}.role-member{background:#edf7fb;color:#0877bd}.audit{padding:12px}.audit+.audit{border-top:1px solid #edf3f6}.locknote{background:#fff7df;color:#8d6400;padding:10px;border-radius:13px;font-size:12px;margin:8px 0}.compose{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:8px}.toast{position:fixed;top:14px;left:50%;transform:translate(-50%,-130%);transition:.2s;background:#142134;color:white;border-radius:999px;padding:9px 14px;z-index:99;font-weight:700}.toast.show{transform:translate(-50%,0)}@media(max-width:700px){.teamgrid,.grid{grid-template-columns:1fr}.row{grid-template-columns:1fr}}
+
+:root{--bg:#f4f8fb;--card:#fff;--text:#142134;--muted:#758b99;--line:#dceaf2;--brand:#0f9ed8;--brand2:#0877bd}
+body.dark{--bg:#07111b;--card:#0d1a26;--text:#eef7fb;--muted:#9db0bc;--line:#223647;--brand:#129fd8;--brand2:#0b7fb3;background:var(--bg);color:var(--text)}
+body{background:var(--bg);color:var(--text);transition:.2s}
+body.dark .card,body.dark .metric,body.dark input,body.dark select,body.dark textarea,body.dark .msgbox,body.dark nav,body.dark .authbox,body.dark .media-btn{background:var(--card);color:var(--text);border-color:var(--line)}
+body.dark .muted{color:var(--muted)}
+body.dark .tab.on{background:#142434;color:#8fd9ff}
+body.dark .tabs{background:#0b1722}
+.calendar-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-dow{text-align:center;font-size:10px;font-weight:800;color:var(--muted);padding:4px}
+.cal-day{min-height:76px;border:1px solid var(--line);background:var(--card);border-radius:14px;padding:7px;position:relative}
+.cal-day.other{opacity:.35}.cal-day.today{outline:2px solid var(--brand)}
+.cal-num{font-size:11px;font-weight:900}.cal-event{display:block;margin-top:5px;padding:4px 5px;border-radius:8px;background:#e9f7fd;color:#0877bd;font-size:9px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+body.dark .cal-event{background:#123247;color:#91dcff}
+.notification-panel{display:grid;gap:8px}.notice{padding:11px;border:1px solid var(--line);background:var(--card);border-radius:14px}.notice.unread{border-left:4px solid var(--brand)}
+.media-player{width:100%;aspect-ratio:16/9;border:0;border-radius:16px;background:#000;margin-top:10px}.spotify-player{height:152px;aspect-ratio:auto}
+.song-detail{padding:14px;border:1px solid var(--line);border-radius:16px;margin-top:10px;background:var(--card)}
+.chord-text{white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;line-height:1.55;background:#07111b;color:#d9f3ff;padding:14px;border-radius:14px;overflow:auto;max-height:420px}
+.file-row{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line)}
+.file-row:last-child{border:0}.photo-lg{width:88px;height:88px;border-radius:50%;object-fit:cover;border:3px solid #d7edf7}
+.report-table{width:100%;border-collapse:collapse;font-size:12px}.report-table th,.report-table td{padding:9px 7px;border-bottom:1px solid var(--line);text-align:left}.report-table th{color:var(--muted);font-size:10px;text-transform:uppercase}
+.install-banner{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px;border:1px solid #bfe5f5;background:#eaf8fe;border-radius:16px;margin:12px 0}
+body.dark .install-banner{background:#102b3a;border-color:#25506a}
+.sub-card{padding:12px;border:1px solid var(--line);border-radius:15px;background:var(--card);margin-bottom:8px}
+.mini-btn{border:0;border-radius:10px;padding:7px 9px;font-size:11px;font-weight:800}
+.badge-role{display:inline-block;border-radius:999px;padding:4px 8px;font-size:10px;font-weight:900}
+.role-master{background:#fff1cc;color:#9b6800}.role-pastor{background:#eee8ff;color:#6544a8}.role-lider{background:#e4f7ee;color:#237b50}.role-admin{background:#e8f2ff;color:#1664a8}.role-member{background:#edf7fb;color:#0877bd}
+.top-actions{display:flex;gap:6px;align-items:center}.icon-top{border:1px solid #ffffff44;background:#ffffff18;color:white;border-radius:11px;padding:8px 9px}
+@media(max-width:700px){nav button{min-width:54px;font-size:10px}.calendar-grid{gap:4px}.cal-day{min-height:64px;padding:5px}}
+
+
+.instrument-tabs{display:flex;gap:7px;overflow:auto;padding-bottom:7px;margin:8px 0 12px}
+.instrument-tab{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:8px 11px;font-size:11px;font-weight:800}
+.instrument-tab.on{background:var(--brand);border-color:var(--brand);color:white}
+.instrument-person{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:8px}
+.person-photo{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#dbeef7;display:grid;place-items:center;font-weight:900;color:#0877bd;flex:0 0 auto}
+.member-checkboxes{display:flex;gap:7px;flex-wrap:wrap;margin-top:7px}
+.member-checkboxes label{display:flex;align-items:center;gap:5px;border:1px solid var(--line);padding:7px 9px;border-radius:999px;margin:0;font-size:11px;background:var(--card)}
+.member-checkboxes input{width:auto}
+.schedule-detail{display:grid;gap:12px}
+.schedule-team{display:grid;gap:8px}
+.schedule-member{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid var(--line);border-radius:15px;background:var(--card)}
+.schedule-member img{width:50px;height:50px;border-radius:50%;object-fit:cover}
+.schedule-avatar{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:white;font-weight:900}
+.schedule-rep{display:grid;gap:8px}
+.schedule-song{padding:11px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+
+
+.clickable-day{cursor:pointer;transition:.15s}
+.clickable-day:hover{outline:1px solid var(--brand)}
+.day-add-hint{position:absolute;right:6px;bottom:5px;font-size:14px;color:var(--brand);opacity:.45}
+.day-add-hint:hover{opacity:1}
+.edit-member-grid{display:grid;gap:8px}
+.edit-member-inst{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.edit-member-inst label{display:flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:999px;padding:7px 9px;font-size:11px;margin:0;background:var(--card)}
+.edit-member-inst input{width:auto}
+
+</style></head><body>
+<div id="toast" class="toast"></div>
+<section id="auth" class="auth"><div class="authbox">
+<div class="logo"><small>IGREJA</small>VOE<br><span style="font-size:18px">MUSIC</span></div>
+<div class="tabs"><button id="tlogin" class="tab on" type="button">Entrar</button><button id="treg" class="tab" type="button">Ativar conta</button></div>
+
+<form id="flogin">
+<label>E-mail</label><input id="lemail" type="email" autocomplete="email" required>
+<label>Senha</label><div class="password-wrap"><input id="lpass" type="password" autocomplete="current-password" required><button class="pw-toggle" type="button" data-toggle-pw="lpass">👁</button></div>
+<button id="loginSubmit" class="btn primary wide">Entrar</button>
+<div class="auth-links"><button id="forgotBtn" class="linkbtn" type="button">Esqueci minha senha</button><button id="resendBtn" class="linkbtn" type="button">Reenviar confirmação</button></div>
+</form>
+
+<form id="freg" class="hidden">
+<div class="auth-note">Use exatamente o mesmo e-mail que o administrador cadastrou para você na equipe.</div>
+<label>Nome</label><input id="rname" autocomplete="name" required>
+<label>E-mail cadastrado na equipe</label><input id="remail" type="email" autocomplete="email" required>
+<label>Crie uma senha</label><div class="password-wrap"><input id="rpass" type="password" autocomplete="new-password" minlength="6" required><button class="pw-toggle" type="button" data-toggle-pw="rpass">👁</button></div>
+<label>Confirmar senha</label><div class="password-wrap"><input id="rpass2" type="password" autocomplete="new-password" minlength="6" required><button class="pw-toggle" type="button" data-toggle-pw="rpass2">👁</button></div>
+<button id="registerSubmit" class="btn primary wide">Ativar minha conta</button>
+</form>
+
+<form id="freset" class="hidden">
+<h3 style="margin:0 0 6px">Redefinir senha</h3>
+<div class="auth-note">Digite sua nova senha para continuar.</div>
+<label>Nova senha</label><div class="password-wrap"><input id="newpass" type="password" minlength="6" required><button class="pw-toggle" type="button" data-toggle-pw="newpass">👁</button></div>
+<label>Confirmar nova senha</label><input id="newpass2" type="password" minlength="6" required>
+<button class="btn primary wide">Salvar nova senha</button>
+</form>
+<div id="authMessage"></div>
+</div></section>
+
+<section id="app" class="app hidden"><header><div><small>IGREJA VOE • MUSIC</small><b id="ptitle">Início</b></div><div class="top-actions"><span id="sessionBadge" class="session-badge"></span><button id="notifyBtn" class="icon-top" title="Notificações">🔔</button><button id="themeBtn" class="icon-top" title="Tema">◐</button><button id="adminBtn" class="topbtn hidden">⚙</button><button id="logout" class="topbtn">Sair</button></div></header><main>
+<section id="home" class="page on"><div class="hero"><small>VOE MUSIC</small><h2 id="hello">Olá!</h2><div id="subhello">Sua equipe, repertório e agenda em um só lugar.</div></div><div id="metrics" class="grid"></div><div class="section"><h3>Próximas escalas</h3><div id="events" class="list"></div></div></section>
+<section id="team" class="page"><div class="section"><h3>Equipe</h3><div id="teamgrid" class="teamgrid"></div></div></section>
+<section id="rep" class="page"><div class="section"><h3>Repertório</h3><div id="replist" class="card" style="padding:14px"></div></div></section>
+<section id="chat" class="page"><div class="section"><h3>Chat da escala</h3><select id="chatEvent"></select><div id="messages" class="msgbox" style="margin-top:10px"></div><div class="compose"><input id="msgText" placeholder="Escreva uma mensagem..."><button id="sendMsg" class="btn primary">Enviar</button></div></div></section>
+
+<section id="calendar" class="page">
+  <div class="section">
+    <div class="calendar-head">
+      <button id="calPrev" class="btn ghost">‹</button>
+      <h3 id="calTitle" style="margin:0"></h3>
+      <button id="calNext" class="btn ghost">›</button>
+    </div>
+    <div class="calendar-grid" id="calendarGrid"></div>
+  </div>
+</section>
+
+<section id="scheduleDetail" class="page"><div class="section"><button id="backToCalendar" class="btn ghost">← Voltar para agenda</button><div id="scheduleDetailContent" class="schedule-detail" style="margin-top:12px"></div></div></section>
+<section id="notifications" class="page">
+  <div class="section">
+    <div class="eventtop"><h3>Notificações</h3><button id="enableBrowserNotifications" class="btn ghost">Ativar no celular</button></div>
+    <div id="notificationsList" class="notification-panel"></div>
+  </div>
+</section>
+
+<section id="more" class="page">
+  <div class="section">
+    <h3>Mais</h3>
+    <div id="installBanner" class="install-banner hidden"><div><b>Instalar VOE Music</b><div class="muted">Use como aplicativo no celular.</div></div><button id="installAppBtn" class="btn primary">Instalar</button></div>
+    <div class="card" style="padding:14px">
+      <button id="substitutionBtn" class="btn ghost wide">🔄 Pedir substituição</button>
+      <button id="reportsBtn" class="btn ghost wide hidden">📊 Relatórios</button>
+      <button id="resourcesBtn" class="btn ghost wide">📂 Arquivos e PDFs</button>
+    </div>
+    <div id="moreContent" class="section"></div>
+  </div>
+</section>
+
+<section id="profile" class="page">
+  <div class="card" style="padding:22px;text-align:center">
+    <img id="profilePhoto" class="photo-lg hidden" alt="Foto">
+    <div id="avatar" style="width:88px;height:88px;border-radius:50%;margin:auto;background:#0f9ed8;color:white;display:grid;place-items:center;font-size:28px;font-weight:900">V</div>
+    <h3 id="pname"></h3><div id="pemail" class="muted"></div><p><span id="prole" class="pill"></span></p>
+    <label>Alterar foto</label><input id="profilePhotoInput" type="file" accept="image/*">
+    <button id="saveProfilePhoto" class="btn primary wide">Salvar foto</button>
+  </div>
+</section>
+<section id="admin" class="page"><div class="section"><h3>Administração</h3>
+<div id="adminLevelInfo" class="card" style="padding:14px;margin-bottom:12px"></div>
+<div class="card adminform"><h4>Gestão de escalas</h4><div id="adminEvents" class="list"></div></div>
+<div class="card adminform"><h4>Histórico de alterações</h4><button id="loadAudit" class="btn ghost wide">Ver histórico</button><div id="auditList" style="margin-top:10px"></div></div>
+<div class="card adminform"><h4>Novo integrante</h4><div class="row"><div><label>Nome</label><input id="mname"></div><div><label>E-mail</label><input id="memail" type="email"></div></div><div class="row"><div><label>Categoria principal</label><select id="mcat"><option value="instrumento">Instrumento</option><option value="vocal">Vocal</option><option value="ministro">Ministro</option></select></div><div><label>Função principal</label><input id="mfunc" placeholder="Teclado, Vocal..."></div></div><label>Instrumentos que essa pessoa pode tocar</label><div id="memberInstrumentChecks" class="member-checkboxes"></div><button id="addMember" class="btn primary wide">Adicionar integrante</button></div>
+<div class="card adminform"><h4>Nova escala</h4><label>Título</label><input id="etitle" placeholder="Culto de Domingo"><div class="row"><div><label>Data</label><input id="edate" type="date"></div><div><label>Horário</label><input id="etime" type="time"></div></div><label>Local</label><input id="eloc"><label>Repetição</label><select id="erecur"><option value="none">Não repetir</option><option value="weekly4">Semanal — 4 ocorrências</option><option value="weekly8">Semanal — 8 ocorrências</option><option value="monthly4">Mensal — 4 ocorrências</option></select><button id="addEvent" class="btn primary wide">Criar escala</button></div>
+<div class="card adminform"><h4>Escalar integrante</h4>
+<label>Escala</label><select id="assignEvent"></select>
+<label>Selecione a função / instrumento</label>
+<div id="assignInstrumentTabs" class="instrument-tabs"></div>
+<div id="assignCandidates"></div>
+<input id="assignFunc" type="hidden">
+</div>
+<div class="card adminform"><h4>Adicionar música ao repertório</h4><label>Escala</label><select id="songEvent"></select><div class="row"><div><label>Música</label><input id="songName"></div><div><label>Tom</label><input id="songKey"></div></div><div class="row"><div><label>BPM</label><input id="songBpm" type="number"></div><div><label>Observação</label><input id="songNote"></div></div><label>Link do YouTube</label><input id="songYoutube" placeholder="https://youtube.com/..."><label>Link do Spotify</label><input id="songSpotify" placeholder="https://open.spotify.com/..."><label>Letra / cifra</label><textarea id="songChordText" rows="6" placeholder="Cole aqui a letra e as cifras..."></textarea><label>PDF / partitura</label><input id="songPdf" type="file" accept="application/pdf"><button id="addSong" class="btn primary wide">Adicionar música</button></div>
+<div class="card adminform"><h4>Pedidos de substituição</h4><div id="adminSubstitutions"></div></div>
+<div class="section"><h3>Integrantes</h3><div id="adminPeople" class="list"></div></div></section>
+</main>
+<nav>
+<button data-p="home" class="on">⌂<br>Início</button>
+<button data-p="calendar">▦<br>Agenda</button>
+<button data-p="team">👥<br>Equipe</button>
+<button data-p="rep">♫<br>Repertório</button>
+<button data-p="chat">💬<br>Chat</button>
+<button data-p="more">•••<br>Mais</button>
+</nav></section>
+<dialog id="editEventDialog" style="border:0;border-radius:22px;width:min(480px,92vw);padding:0">
+<div style="padding:20px">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+    <div><small style="color:#0877bd;font-weight:800">EDITAR ESCALA</small><h3 id="editEventHeading" style="margin:4px 0">Escala</h3></div>
+    <button id="closeEditEvent" class="btn ghost">✕</button>
+  </div>
+  <div id="editLockNote" class="locknote hidden"></div>
+  <input id="editEventId" type="hidden">
+  <label>Título</label><input id="editTitle">
+  <div class="row"><div><label>Data</label><input id="editDate" type="date"></div><div><label>Horário</label><input id="editTime" type="time"></div></div>
+  <label>Local</label><input id="editLocation">
+  <label>Observações</label><textarea id="editNotes" rows="3"></textarea>
+  <button id="saveEventEdit" class="btn primary wide">Salvar alterações</button>
+</div>
+</dialog>
+
+<dialog id="createEventDialog" style="border:0;border-radius:22px;width:min(480px,92vw);padding:0">
+<div style="padding:20px">
+  <div class="eventtop"><div><small style="color:#0877bd;font-weight:800">NOVA ESCALA</small><h3 style="margin:4px 0">Criar pela agenda</h3></div><button id="closeCreateEvent" class="btn ghost">✕</button></div>
+  <label>Título</label><input id="quickEventTitle" placeholder="Culto, Ensaio...">
+  <div class="row"><div><label>Data</label><input id="quickEventDate" type="date"></div><div><label>Horário</label><input id="quickEventTime" type="time"></div></div>
+  <label>Local</label><input id="quickEventLocation">
+  <label>Repetição</label><select id="quickEventRecur"><option value="none">Não repetir</option><option value="weekly4">Semanal — 4 ocorrências</option><option value="weekly8">Semanal — 8 ocorrências</option><option value="monthly4">Mensal — 4 ocorrências</option></select>
+  <button id="quickCreateEvent" class="btn primary wide">Criar escala</button>
+</div>
+</dialog>
+
+<dialog id="editMemberDialog" style="border:0;border-radius:22px;width:min(520px,92vw);padding:0">
+<div style="padding:20px">
+  <div class="eventtop"><div><small style="color:#0877bd;font-weight:800">EDITAR INTEGRANTE</small><h3 id="editMemberTitle" style="margin:4px 0">Integrante</h3></div><button id="closeEditMember" class="btn ghost">✕</button></div>
+  <input id="editMemberId" type="hidden">
+  <div class="edit-member-grid">
+    <div><label>Nome</label><input id="editMemberName"></div>
+    <div><label>E-mail</label><input id="editMemberEmail" type="email"></div>
+    <div><label>Categoria principal</label><select id="editMemberCategory"><option value="instrumento">Instrumento</option><option value="vocal">Vocal</option><option value="ministro">Ministro</option></select></div>
+    <div><label>Função principal</label><input id="editMemberRole" placeholder="Teclado, Vocal..."></div>
+    <div><label>Instrumentos / aptidões</label><div id="editMemberInstruments" class="edit-member-inst"></div></div>
+  </div>
+  <button id="saveMemberEdit" class="btn primary wide">Salvar alterações</button>
+</div>
+</dialog>
+<script>
+
+const sb=supabase.createClient("https://jovbfbvndzfrhzkrcgno.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpvdmJmYnZuZHpmcmh6a3JjZ25vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYxMDUxODksImV4cCI6MjEwMTY4MTE4OX0.JHjVvAAqOulaViq9RZOrTHML8mEMh0ZdunyMybB9bTU");let me=null,people=[],events=[],assignments=[],messages=[],notifications=[],substitutions=[];let calCursor=new Date();let deferredInstallPrompt=null;let selectedAssignInstrument='';
+const $=id=>document.getElementById(id),toast=t=>{let x=$('toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),2600)};
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function fdate(d){return new Date(d+'T12:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})}
+function status(s){return s==='confirmed'?'Confirmado':s==='declined'?'Não poderá':'Pendente'}
+function level(){return me?.access_level||((me?.role==='admin')?'admin':'member')}
+function isManager(){return ['master','pastor','lider','admin'].includes(level())}
+function isMaster(){return level()==='master'}
+function levelLabel(v){return v==='master'?'Administrador Master':v==='pastor'?'Pastor':v==='lider'?'Líder':v==='admin'?'Administrador':'Integrante'}
+
+const INSTRUMENTS=['Ministro','Vocal','Teclado','Piano','Violão','Guitarra','Baixo','Bateria','Cajón','Percussão','Saxofone','Trompete','Trombone','Violino','Cello','Flauta','Outro'];
+function memberInstruments(p){
+ let a=Array.isArray(p.instruments)?[...p.instruments]:[];
+ if(!a.length&&p.default_role)a=[p.default_role];
+ if(p.category==='vocal'&&!a.includes('Vocal'))a.push('Vocal');
+ if(p.category==='ministro'&&!a.includes('Ministro'))a.push('Ministro');
+ return [...new Set(a.filter(Boolean))];
+}
+function personPhotoHTML(p,cls='person-photo'){
+ if(p?.avatar_url)return `<img class="${cls}" src="${esc(p.avatar_url)}" alt="${esc(p.full_name||'')}">`;
+ let letter=(p?.full_name||'?').trim().charAt(0).toUpperCase();
+ return `<div class="${cls}">${esc(letter)}</div>`;
+}
+
+
+function authMsg(text,type='note'){
+  $('authMessage').innerHTML=text?`<div class="${type==='error'?'auth-error':'auth-note'}">${esc(text)}</div>`:'';
+}
+function setAuthBusy(busy){
+  ['loginSubmit','registerSubmit'].forEach(id=>{if($(id))$(id).disabled=busy});
+}
+function showAuth(mode){
+  $('flogin').classList.toggle('hidden',mode!=='login');
+  $('freg').classList.toggle('hidden',mode!=='register');
+  $('freset').classList.toggle('hidden',mode!=='reset');
+  $('tlogin').classList.toggle('on',mode==='login');
+  $('treg').classList.toggle('on',mode==='register');
+  document.querySelector('.tabs').classList.toggle('hidden',mode==='reset');
+  authMsg('');
+}
+$('tlogin').onclick=()=>showAuth('login');
+$('treg').onclick=()=>showAuth('register');
+document.querySelectorAll('[data-toggle-pw]').forEach(b=>b.onclick=()=>{let i=$(b.dataset.togglePw);i.type=i.type==='password'?'text':'password';b.textContent=i.type==='password'?'👁':'🙈'});
+
+$('flogin').onsubmit=async e=>{
+  e.preventDefault();authMsg('');setAuthBusy(true);
+  let email=$('lemail').value.trim().toLowerCase(),password=$('lpass').value;
+  let {data,error}=await sb.auth.signInWithPassword({email,password});
+  setAuthBusy(false);
+  if(error){
+    let msg=error.message.includes('Email not confirmed')?'Seu e-mail ainda não foi confirmado. Toque em “Reenviar confirmação”.':
+      error.message.includes('Invalid login')?'E-mail ou senha incorretos.':error.message;
+    return authMsg(msg,'error');
+  }
+  await start();
+};
+
+$('freg').onsubmit=async e=>{
+  e.preventDefault();authMsg('');
+  let full_name=$('rname').value.trim(),email=$('remail').value.trim().toLowerCase(),password=$('rpass').value,password2=$('rpass2').value;
+  if(password!==password2)return authMsg('As senhas não são iguais.','error');
+  if(password.length<6)return authMsg('A senha precisa ter pelo menos 6 caracteres.','error');
+  setAuthBusy(true);
+  let {data,error}=await sb.auth.signUp({
+    email,password,
+    options:{data:{full_name},emailRedirectTo:location.origin}
+  });
+  setAuthBusy(false);
+  if(error){
+    let msg=error.message.includes('not invited')?'Este e-mail ainda não foi cadastrado pela administração.':error.message;
+    return authMsg(msg,'error');
+  }
+  if(data.session){await start()}
+  else{showAuth('login');authMsg('Conta ativada. Abra o e-mail enviado pelo VOE Music para confirmar seu endereço e depois faça login.')}
+};
+
+$('forgotBtn').onclick=async()=>{
+  let email=$('lemail').value.trim().toLowerCase();
+  if(!email)return authMsg('Digite seu e-mail no campo acima e toque novamente em “Esqueci minha senha”.','error');
+  let {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin});
+  if(error)return authMsg(error.message,'error');
+  authMsg('Enviamos um link para redefinir sua senha. Confira sua caixa de entrada e também o spam.');
+};
+
+$('resendBtn').onclick=async()=>{
+  let email=$('lemail').value.trim().toLowerCase();
+  if(!email)return authMsg('Digite seu e-mail no campo acima para reenviar a confirmação.','error');
+  let {error}=await sb.auth.resend({type:'signup',email,options:{emailRedirectTo:location.origin}});
+  if(error)return authMsg(error.message,'error');
+  authMsg('E-mail de confirmação reenviado.');
+};
+
+$('freset').onsubmit=async e=>{
+  e.preventDefault();
+  let p=$('newpass').value,p2=$('newpass2').value;
+  if(p!==p2)return authMsg('As senhas não são iguais.','error');
+  let {error}=await sb.auth.updateUser({password:p});
+  if(error)return authMsg(error.message,'error');
+  authMsg('Senha atualizada. Você já pode continuar no aplicativo.');
+  await start();
+};
+
+$('logout').onclick=async()=>{await sb.auth.signOut();me=null;location.reload()};
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>show(b.dataset.p,b));
+$('adminBtn').onclick=()=>show('admin',null);
+function show(id,b){document.querySelectorAll('.page').forEach(x=>x.classList.remove('on'));$(id).classList.add('on');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));if(b)b.classList.add('on');$('ptitle').textContent={home:'Início',calendar:'Agenda',scheduleDetail:'Escala',team:'Equipe',rep:'Repertório',chat:'Chat',profile:'Perfil',notifications:'Notificações',more:'Mais',admin:'Administração'}[id]}
+async function start(){
+ let {data:{session}}=await sb.auth.getSession();
+ if(!session)return;
+ let {data:p,error}=await sb.from('profiles').select('*').eq('auth_user_id',session.user.id).maybeSingle();
+ if(error){await sb.auth.signOut();return authMsg('Não foi possível carregar seu perfil: '+error.message,'error')}
+ if(!p){await sb.auth.signOut();return authMsg('Sua conta ainda não está vinculada a um integrante cadastrado. Fale com a administração.','error')}
+ if(p.active===false){await sb.auth.signOut();return authMsg('Seu acesso ao VOE Music está desativado. Fale com a administração.','error')}
+ me=p;
+ $('auth').classList.add('hidden');$('app').classList.remove('hidden');
+ $('adminBtn').classList.toggle('hidden',!isManager());
+ $('sessionBadge').textContent='🔒 '+(me.full_name||'Conta');
+ await load();subscribe();
+}
+async function load(){
+ let r=await Promise.all([
+   sb.from('profiles').select('*').order('full_name'),
+   sb.from('events').select('*').order('event_date'),
+   sb.from('assignments').select('*'),
+   sb.from('messages').select('*').order('created_at'),
+   sb.from('notifications').select('*').order('created_at',{ascending:false}),
+   sb.from('substitution_requests').select('*').order('created_at',{ascending:false})
+ ]);
+ if(r.some(x=>x.error)){console.error(r.map(x=>x.error));return toast('Erro ao carregar dados.')}
+ people=r[0].data;events=r[1].data;assignments=r[2].data;messages=r[3].data;notifications=r[4].data;substitutions=r[5].data;
+ render()
+}
+function render(){$('hello').textContent='Olá, '+(me.full_name||'músico')+' 👋';let mine=assignments.filter(a=>a.profile_id===me.id).map(a=>({a,e:events.find(e=>e.id===a.event_id)})).filter(x=>x.e&&x.e.event_date>=new Date().toISOString().slice(0,10));$('metrics').innerHTML=`<div class="metric"><strong>${mine.length}</strong><span>próximas escalas</span></div><div class="metric"><strong>${mine.filter(x=>x.a.status==='confirmed').length}</strong><span>confirmadas</span></div><div class="metric"><strong>${events.reduce((n,e)=>n+(e.repertoire||[]).length,0)}</strong><span>músicas</span></div>`;$('events').innerHTML=(isManager()?events.map(e=>({e,a:null})):mine).map(eventCard).join('')||'<div class="card" style="padding:16px">Nenhuma escala futura.</div>';wireEvents();renderTeam();renderRep();renderChatSelect();renderProfile();renderCalendar();renderNotifications();renderMore();renderAdmin();maybeNotifyUpcoming()}
+function eventCard(x){let e=x.e,a=x.a,team=assignments.filter(z=>z.event_id===e.id).map(z=>({z,p:people.find(p=>p.id===z.profile_id)})).filter(x=>x.p);return `<div class="card event"><div class="eventtop"><div><h4>${esc(e.title)}</h4><div class="muted">${fdate(e.event_date)} • ${String(e.event_time).slice(0,5)} • ${esc(e.location||'')}</div></div>${a?`<span class="pill ${a.status}">${status(a.status)}</span>`:''}</div>${a?`<div class="muted" style="margin-top:7px">Sua função: <b>${esc(a.function_name||me.default_role)}</b></div><div class="actions"><button class="btn ghost" data-st="${a.id}|confirmed">Confirmar</button><button class="btn ghost" data-st="${a.id}|declined">Não posso</button><button class="btn ghost" data-sub="${a.id}">Pedir substituição</button></div>`:''}<div class="muted" style="margin-top:10px"><b>Equipe:</b> ${team.map(x=>esc(x.p.full_name)+' — '+esc(x.z.function_name||x.p.default_role)).join(' • ')||'Ainda não definida'}</div><div class="muted" style="margin-top:8px"><b>Repertório:</b> ${(e.repertoire||[]).map(s=>`${s.youtube_url||s.spotify_url?`<a href="${esc(s.youtube_url||s.spotify_url)}" target="_blank" rel="noopener" style="color:#0877bd;text-decoration:none;font-weight:700">${esc(s.name)} (${esc(s.key||'-')}) ↗</a>`:`${esc(s.name)} (${esc(s.key||'-')})`}`).join(' • ')||'Ainda não definido'}</div></div>`}
+function wireEvents(){document.querySelectorAll('[data-st]').forEach(b=>b.onclick=async()=>{let[id,s]=b.dataset.st.split('|');let{error}=await sb.from('assignments').update({status:s}).eq('id',id);if(error)toast(error.message);else{toast(s==='confirmed'?'Presença confirmada.':'Resposta registrada.');load()}});document.querySelectorAll('[data-sub]').forEach(b=>b.onclick=()=>openSubstitutionForAssignment(b.dataset.sub))}
+function renderTeam(){
+ let groups=[['Ministro','⭐ Ministros'],['Vocal','🎤 Vocais'],...INSTRUMENTS.filter(x=>!['Ministro','Vocal'].includes(x)).map(x=>[x,'🎵 '+x])];
+ $('teamgrid').innerHTML=groups.map(([inst,title])=>{
+   let list=people.filter(p=>p.active!==false&&memberInstruments(p).includes(inst));
+   if(!list.length)return '';
+   return `<div class="card group"><h4>${title}</h4>${list.map(p=>`<div class="instrument-person">${personPhotoHTML(p)}<div><b>${esc(p.full_name)}</b><div class="muted">${esc(memberInstruments(p).join(' • '))}</div></div></div>`).join('')}</div>`;
+ }).join('')||'<div class="card" style="padding:14px">Nenhum integrante cadastrado.</div>';
+}
+function youtubeEmbed(url){
+ try{let u=new URL(url);let id='';if(u.hostname.includes('youtu.be'))id=u.pathname.slice(1);else id=u.searchParams.get('v')||u.pathname.split('/').filter(Boolean).pop();return id?`https://www.youtube.com/embed/${id}`:''}catch(e){return''}
+}
+function spotifyEmbed(url){try{let u=new URL(url);let p=u.pathname.split('/').filter(Boolean);return p.length>=2?`https://open.spotify.com/embed/${p[0]}/${p[1]}`:''}catch(e){return''}}
+function renderRep(){
+ let songs=[];events.forEach(e=>(e.repertoire||[]).forEach(s=>songs.push({...s,event:e.title,event_id:e.id})));
+ $('replist').innerHTML=songs.map(s=>`<div class="song"><div style="flex:1"><b>${esc(s.name)}</b><div class="muted">${esc(s.event)}${s.bpm?' • '+s.bpm+' BPM':''}</div>${s.notes?`<div class="muted" style="margin-top:4px">${esc(s.notes)}</div>`:''}<div class="media-actions">${s.youtube_url?`<button class="media-btn yt" data-player="yt|${encodeURIComponent(s.youtube_url)}">▶ YouTube</button>`:''}${s.spotify_url?`<button class="media-btn sp" data-player="sp|${encodeURIComponent(s.spotify_url)}">● Spotify</button>`:''}${s.chord_text?`<button class="media-btn" data-chord="${s.id}">🎼 Cifra</button>`:''}${s.pdf_url?`<a class="media-btn" href="${esc(s.pdf_url)}" target="_blank">📄 PDF</a>`:''}</div></div><span class="key">${esc(s.key||'-')}</span></div>`).join('')||'<div class="muted">Nenhuma música cadastrada.</div>';
+ document.querySelectorAll('[data-player]').forEach(b=>b.onclick=()=>openPlayer(b.dataset.player));
+ document.querySelectorAll('[data-chord]').forEach(b=>b.onclick=()=>openChord(b.dataset.chord,songs));
+}
+function openPlayer(spec){
+ let [kind,enc]=spec.split('|'),url=decodeURIComponent(enc),src=kind==='yt'?youtubeEmbed(url):spotifyEmbed(url);
+ if(!src)return toast('Link inválido.');
+ $('moreContent').innerHTML=`<div class="card" style="padding:14px"><div class="eventtop"><h3>${kind==='yt'?'YouTube':'Spotify'}</h3><button class="btn ghost" onclick="show('rep',document.querySelector('[data-p=rep]'))">Voltar</button></div><iframe class="media-player ${kind==='sp'?'spotify-player':''}" src="${src}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`;
+ show('more',document.querySelector('[data-p=more]'));
+}
+function openChord(id,songs){
+ let s=songs.find(x=>String(x.id)===String(id));if(!s)return;
+ $('moreContent').innerHTML=`<div class="card" style="padding:14px"><div class="eventtop"><div><h3>${esc(s.name)}</h3><span class="key">${esc(s.key||'-')}</span></div><button class="btn ghost" onclick="show('rep',document.querySelector('[data-p=rep]'))">Voltar</button></div><pre class="chord-text">${esc(s.chord_text||'')}</pre></div>`;
+ show('more',document.querySelector('[data-p=more]'));
+}
+function renderChatSelect(){$('chatEvent').innerHTML=events.map(e=>`<option value="${e.id}">${esc(e.title)} — ${fdate(e.event_date)}</option>`).join('');renderMsgs()};$('chatEvent').onchange=renderMsgs;
+function renderMsgs(){let id=$('chatEvent').value;$('messages').innerHTML=messages.filter(m=>m.event_id===id).map(m=>{let p=people.find(x=>x.id===m.profile_id);return `<div class="msg ${m.profile_id===me.id?'me':''}"><b>${esc(p?.full_name||'Membro')}</b><br>${esc(m.body)}</div>`}).join('');$('messages').scrollTop=99999}
+$('sendMsg').onclick=async()=>{let body=$('msgText').value.trim(),event_id=$('chatEvent').value;if(!body||!event_id)return;let{error}=await sb.from('messages').insert({event_id,profile_id:me.id,body});if(error)toast(error.message);else{$('msgText').value='';load()}};
+function renderProfile(){
+ $('pname').textContent=me.full_name;$('pemail').textContent=me.email;$('prole').textContent=levelLabel(level())+' • '+(me.default_role||me.category);
+ if(me.avatar_url){$('profilePhoto').src=me.avatar_url;$('profilePhoto').classList.remove('hidden');$('avatar').classList.add('hidden')}else{$('profilePhoto').classList.add('hidden');$('avatar').classList.remove('hidden');$('avatar').textContent=(me.full_name||'V')[0].toUpperCase()}
+}
+
+function renderMemberInstrumentChecks(){
+ $('memberInstrumentChecks').innerHTML=INSTRUMENTS.filter(x=>!['Ministro','Vocal'].includes(x)).map(x=>`<label><input type="checkbox" value="${esc(x)}">${esc(x)}</label>`).join('');
+}
+renderMemberInstrumentChecks();
+
+function renderAdmin(){
+ if(!isManager())return;
+ $('adminLevelInfo').innerHTML=`<b>${levelLabel(level())}</b><div class="muted">${isMaster()?'Você pode promover/remover administradores e alterar todas as escalas.':'Você pode criar e alterar escalas, repertórios e integrantes. Apenas o Master gerencia administradores.'}</div>`;
+ let evopts=events.map(e=>`<option value="${e.id}">${esc(e.title)} — ${fdate(e.event_date)}</option>`).join('');
+ $('assignEvent').innerHTML=evopts;$('songEvent').innerHTML=evopts;
+ renderAssignInstrumentTabs();
+ $('adminEvents').innerHTML=events.map(e=>`<div class="card event"><div class="eventtop"><div><b>${esc(e.title)}</b><div class="muted">${fdate(e.event_date)} • ${String(e.event_time).slice(0,5)} • ${esc(e.location||'')}</div></div><button class="btn ghost" data-edit-event="${e.id}">✏ Editar</button></div></div>`).join('')||'<div class="muted">Nenhuma escala.</div>';
+ $('adminPeople').innerHTML=people.map(p=>`<div class="card event"><div class="eventtop"><div><b>${esc(p.full_name)}</b><div class="muted">${esc(p.email||'')} • ${esc(p.default_role||p.category)}</div><span class="pill ${p.access_level==='master'?'role-master':p.access_level==='pastor'?'role-pastor':p.access_level==='lider'?'role-lider':p.access_level==='admin'?'role-admin':'role-member'}">${levelLabel(p.access_level||'member')}</span></div><div class="actions">${isMaster()&&p.id!==me.id?`<select data-level="${p.id}" style="width:auto"><option value="member" ${(p.access_level||'member')==='member'?'selected':''}>Integrante</option><option value="admin" ${p.access_level==='admin'?'selected':''}>Administrador</option><option value="lider" ${p.access_level==='lider'?'selected':''}>Líder</option><option value="pastor" ${p.access_level==='pastor'?'selected':''}>Pastor</option><option value="master" ${p.access_level==='master'?'selected':''}>Master</option></select>`:''}<button class="btn ghost" data-edit-member="${p.id}">Editar</button>${p.id!==me.id?`<button class="btn danger" data-del="${p.id}">Excluir</button>`:''}</div></div></div>`).join('');
+ document.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{if(!confirm('Excluir este integrante?'))return;let{error}=await sb.from('profiles').delete().eq('id',b.dataset.del);if(error)toast(error.message);else load()});
+ document.querySelectorAll('[data-edit-member]').forEach(b=>b.onclick=()=>openMemberEditor(b.dataset.editMember));
+
+ document.querySelectorAll('[data-level]').forEach(s=>s.onchange=async()=>{let {error}=await sb.rpc('set_access_level',{target_profile:s.dataset.level,new_level:s.value});if(error){toast(error.message);load()}else{toast('Nível de acesso atualizado.');load()}});
+ document.querySelectorAll('[data-edit-event]').forEach(b=>b.onclick=()=>openEventEditor(b.dataset.editEvent));
+ $('adminSubstitutions').innerHTML=substitutions.filter(s=>s.status==='pending').map(s=>{let p=people.find(x=>x.id===s.requester_profile_id),a=assignments.find(x=>x.id===s.assignment_id),e=a?events.find(x=>x.id===a.event_id):null;return `<div class="sub-card"><b>${esc(p?.full_name||'Integrante')}</b><div class="muted">${esc(e?.title||'Escala')} • ${esc(s.reason||'Sem motivo')}</div><div class="actions"><button class="mini-btn" data-substatus="${s.id}|approved">Aprovar</button><button class="mini-btn" data-substatus="${s.id}|rejected">Recusar</button></div></div>`}).join('')||'<div class="muted">Nenhum pedido pendente.</div>';
+ document.querySelectorAll('[data-substatus]').forEach(b=>b.onclick=async()=>{let[id,status]=b.dataset.substatus.split('|');let{error}=await sb.from('substitution_requests').update({status,resolved_by:me.id,resolved_at:new Date().toISOString()}).eq('id',id);if(error)toast(error.message);else{toast('Pedido atualizado.');load()}});
+
+}
+
+function renderAssignInstrumentTabs(){
+ let available=INSTRUMENTS.filter(inst=>people.some(p=>p.active!==false&&memberInstruments(p).includes(inst)));
+ if(!selectedAssignInstrument||!available.includes(selectedAssignInstrument))selectedAssignInstrument=available[0]||'';
+ $('assignInstrumentTabs').innerHTML=available.map(inst=>`<button class="instrument-tab ${inst===selectedAssignInstrument?'on':''}" data-inst="${esc(inst)}">${esc(inst)}</button>`).join('');
+ document.querySelectorAll('[data-inst]').forEach(b=>b.onclick=()=>{selectedAssignInstrument=b.dataset.inst;renderAssignInstrumentTabs()});
+ renderAssignCandidates();
+}
+function renderAssignCandidates(){
+ let eventId=$('assignEvent').value,inst=selectedAssignInstrument;
+ let candidates=people.filter(p=>p.active!==false&&memberInstruments(p).includes(inst));
+ $('assignCandidates').innerHTML=candidates.map(p=>{
+   let existing=assignments.find(a=>a.event_id===eventId&&a.profile_id===p.id);
+   return `<div class="instrument-person">${personPhotoHTML(p)}<div style="flex:1"><b>${esc(p.full_name)}</b><div class="muted">${esc(memberInstruments(p).join(' • '))}</div></div><button class="btn ${existing?'ghost':'primary'}" data-assign-person="${p.id}" ${existing?'disabled':''}>${existing?'Já escalado':'Escalar'}</button></div>`;
+ }).join('')||'<div class="muted">Nenhuma pessoa apta para este instrumento.</div>';
+ document.querySelectorAll('[data-assign-person]').forEach(b=>b.onclick=async()=>{
+   let event_id=$('assignEvent').value,profile_id=b.dataset.assignPerson,function_name=selectedAssignInstrument;
+   let{error}=await sb.from('assignments').upsert({event_id,profile_id,function_name,status:'pending'},{onConflict:'event_id,profile_id'});
+   if(error)toast(error.message);else{toast(`${function_name}: integrante adicionado.`);load()}
+ });
+}
+$('assignEvent').onchange=renderAssignCandidates;
+
+$('addMember').onclick=async()=>{
+ let full_name=$('mname').value.trim(),email=$('memail').value.trim().toLowerCase(),category=$('mcat').value,default_role=$('mfunc').value.trim();
+ if(!full_name||!email)return toast('Informe nome e e-mail.');
+ let instruments=[...document.querySelectorAll('#memberInstrumentChecks input:checked')].map(x=>x.value);
+ if(category==='vocal'&&!instruments.includes('Vocal'))instruments.push('Vocal');
+ if(category==='ministro'&&!instruments.includes('Ministro'))instruments.push('Ministro');
+ if(category==='instrumento'&&default_role&&!instruments.includes(default_role))instruments.push(default_role);
+ let{error}=await sb.from('profiles').insert({full_name,email,category,default_role,instruments,role:'member',access_level:'member',active:true});
+ if(error)toast(error.message);else{toast('Integrante adicionado.');$('mname').value=$('memail').value=$('mfunc').value='';document.querySelectorAll('#memberInstrumentChecks input').forEach(x=>x.checked=false);load()}
+};
+$('addEvent').onclick=async()=>{
+ let title=$('etitle').value.trim(),event_date=$('edate').value,event_time=$('etime').value,location=$('eloc').value.trim(),recur=$('erecur').value;
+ if(!title||!event_date||!event_time)return toast('Preencha título, data e horário.');
+ let base=new Date(event_date+'T12:00:00'),rows=[],count=recur==='weekly8'?8:recur==='weekly4'?4:recur==='monthly4'?4:1;
+ for(let i=0;i<count;i++){
+   let d=new Date(base);
+   if(recur.startsWith('weekly'))d.setDate(base.getDate()+7*i);
+   else if(recur==='monthly4')d.setMonth(base.getMonth()+i);
+   rows.push({title,event_date:d.toISOString().slice(0,10),event_time,location,created_by:me.id,repertoire:[]});
+ }
+ let{error}=await sb.from('events').insert(rows);if(error)toast(error.message);else{toast(count>1?`${count} escalas criadas.`:'Escala criada.');load()}
+};
+$('addSong').onclick=async()=>{
+ let id=$('songEvent').value,e=events.find(x=>x.id===id),name=$('songName').value.trim();if(!e||!name)return toast('Escolha a escala e informe a música.');
+ let pdf_url='',file=$('songPdf').files[0];
+ if(file){let path=`pdf/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,'_')}`;let up=await sb.storage.from('voe-files').upload(path,file,{upsert:false});if(up.error)return toast(up.error.message);pdf_url=sb.storage.from('voe-files').getPublicUrl(path).data.publicUrl}
+ let youtube_url=$('songYoutube').value.trim(),spotify_url=$('songSpotify').value.trim();
+ let rep=[...(e.repertoire||[]),{id:crypto.randomUUID(),name,key:$('songKey').value.trim(),bpm:$('songBpm').value||'',notes:$('songNote').value.trim(),youtube_url,spotify_url,chord_text:$('songChordText').value,pdf_url}];
+ let{error}=await sb.from('events').update({repertoire:rep}).eq('id',id);if(error)toast(error.message);else{toast('Música adicionada.');['songName','songKey','songBpm','songNote','songYoutube','songSpotify','songChordText'].forEach(x=>$(x).value='');$('songPdf').value='';load()}
+};
+
+
+function renderCalendar(){
+ let y=calCursor.getFullYear(),m=calCursor.getMonth(),first=new Date(y,m,1),start=new Date(y,m,1-first.getDay()),today=new Date();
+ $('calTitle').textContent=calCursor.toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
+ let names=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+ let out=names.map(n=>`<div class="cal-dow">${n}</div>`).join('');
+ for(let i=0;i<42;i++){
+   let d=new Date(start);d.setDate(start.getDate()+i);let iso=d.toISOString().slice(0,10),dayEvents=events.filter(e=>e.event_date===iso);
+   out+=`<div class="cal-day clickable-day ${d.getMonth()!==m?'other':''} ${d.toDateString()===today.toDateString()?'today':''}" data-day="${iso}">
+      <div class="cal-num">${d.getDate()}</div>
+      ${dayEvents.map(e=>`<button class="cal-event" data-open-event="${e.id}" title="${esc(e.title)}">${esc(e.title)}</button>`).join('')}
+      ${isManager()?`<span class="day-add-hint" title="Criar escala">＋</span>`:''}
+   </div>`;
+ }
+ $('calendarGrid').innerHTML=out;
+
+ document.querySelectorAll('[data-open-event]').forEach(b=>b.onclick=e=>{e.stopPropagation();openScheduleDetail(b.dataset.openEvent)});
+ document.querySelectorAll('[data-day]').forEach(day=>day.onclick=e=>{
+   if(!isManager())return;
+   if(e.target.closest('[data-open-event]'))return;
+   openQuickCreateEvent(day.dataset.day);
+ });
+}
+$('calPrev').onclick=()=>{calCursor.setMonth(calCursor.getMonth()-1);renderCalendar()};
+$('calNext').onclick=()=>{calCursor.setMonth(calCursor.getMonth()+1);renderCalendar()};
+
+
+
+function openQuickCreateEvent(date){
+ if(!isManager())return;
+ $('quickEventDate').value=date;
+ $('quickEventTitle').value='';
+ $('quickEventTime').value='';
+ $('quickEventLocation').value='';
+ $('quickEventRecur').value='none';
+ $('createEventDialog').showModal();
+}
+$('closeCreateEvent').onclick=()=>$('createEventDialog').close();
+$('createEventDialog').addEventListener('cancel',e=>{e.preventDefault();$('createEventDialog').close()});
+$('quickCreateEvent').onclick=async()=>{
+ let title=$('quickEventTitle').value.trim(),event_date=$('quickEventDate').value,event_time=$('quickEventTime').value,location=$('quickEventLocation').value.trim(),recur=$('quickEventRecur').value;
+ if(!title||!event_date||!event_time)return toast('Preencha título, data e horário.');
+ let base=new Date(event_date+'T12:00:00'),rows=[],count=recur==='weekly8'?8:recur==='weekly4'?4:recur==='monthly4'?4:1;
+ for(let i=0;i<count;i++){
+   let d=new Date(base);
+   if(recur.startsWith('weekly'))d.setDate(base.getDate()+7*i);
+   else if(recur==='monthly4')d.setMonth(base.getMonth()+i);
+   rows.push({title,event_date:d.toISOString().slice(0,10),event_time,location,created_by:me.id,repertoire:[]});
+ }
+ let {error}=await sb.from('events').insert(rows);
+ if(error)return toast(error.message);
+ $('createEventDialog').close();
+ toast(count>1?`${count} escalas criadas.`:'Escala criada.');
+ await load();
+};
+
+function openScheduleDetail(eventId){
+ let e=events.find(x=>x.id===eventId);if(!e)return;
+ let team=assignments.filter(a=>a.event_id===eventId).map(a=>({a,p:people.find(p=>p.id===a.profile_id)})).filter(x=>x.p);
+ let songs=e.repertoire||[];
+ $('scheduleDetailContent').innerHTML=`
+ <div class="card" style="padding:16px"><div class="eventtop"><div><h2 style="margin:0 0 4px">${esc(e.title)}</h2><div class="muted">${fdate(e.event_date)} • ${String(e.event_time).slice(0,5)} • ${esc(e.location||'')}</div></div></div>${e.notes?`<p>${esc(e.notes)}</p>`:''}</div>
+ <div class="card" style="padding:14px"><h3>Equipe da escala</h3><div class="schedule-team">${team.map(x=>`<div class="schedule-member">${personPhotoHTML(x.p,x.p.avatar_url?'person-photo':'schedule-avatar')}<div style="flex:1"><b>${esc(x.p.full_name)}</b><div class="muted">${esc(x.a.function_name||x.p.default_role||'')}</div></div><span class="pill ${x.a.status}">${status(x.a.status)}</span></div>`).join('')||'<div class="muted">Nenhum membro escalado.</div>'}</div></div>
+ <div class="card" style="padding:14px"><h3>Repertório</h3><div class="schedule-rep">${songs.map(s=>`<div class="schedule-song"><div class="eventtop"><div><b>${esc(s.name)}</b><div class="muted">${s.bpm?esc(s.bpm)+' BPM':''}${s.notes?' • '+esc(s.notes):''}</div></div><span class="key">${esc(s.key||'-')}</span></div><div class="media-actions">${s.youtube_url?`<button class="media-btn yt" data-detail-player="yt|${encodeURIComponent(s.youtube_url)}">▶ YouTube</button>`:''}${s.spotify_url?`<button class="media-btn sp" data-detail-player="sp|${encodeURIComponent(s.spotify_url)}">● Spotify</button>`:''}${s.chord_text?`<button class="media-btn" data-detail-chord="${s.id}">🎼 Cifra</button>`:''}${s.pdf_url?`<a class="media-btn" href="${esc(s.pdf_url)}" target="_blank">📄 PDF</a>`:''}</div></div>`).join('')||'<div class="muted">Nenhuma música cadastrada.</div>'}</div></div>`;
+ show('scheduleDetail',null);
+ document.querySelectorAll('[data-detail-player]').forEach(b=>b.onclick=()=>openPlayer(b.dataset.detailPlayer));
+ document.querySelectorAll('[data-detail-chord]').forEach(b=>b.onclick=()=>{let s=songs.find(x=>String(x.id)===String(b.dataset.detailChord));if(!s)return;$('moreContent').innerHTML=`<div class="card" style="padding:14px"><h3>${esc(s.name)}</h3><pre class="chord-text">${esc(s.chord_text||'')}</pre></div>`;show('more',document.querySelector('[data-p=more]'))});
+}
+$('backToCalendar').onclick=()=>show('calendar',document.querySelector('[data-p=calendar]'));
+
+function renderNotifications(){
+ let mine=notifications.filter(n=>n.profile_id===me.id||isManager());
+ $('notificationsList').innerHTML=mine.map(n=>`<div class="notice ${n.read?'':'unread'}"><b>${esc(n.body||'Notificação')}</b><div class="muted">${new Date(n.created_at).toLocaleString('pt-BR')}</div>${n.profile_id===me.id&&!n.read?`<button class="mini-btn" data-read="${n.id}">Marcar como lida</button>`:''}</div>`).join('')||'<div class="card" style="padding:14px">Nenhuma notificação.</div>';
+ document.querySelectorAll('[data-read]').forEach(b=>b.onclick=async()=>{await sb.from('notifications').update({read:true}).eq('id',b.dataset.read);load()});
+}
+$('notifyBtn').onclick=()=>show('notifications',null);
+$('enableBrowserNotifications').onclick=async()=>{if(!('Notification'in window))return toast('Seu navegador não suporta notificações.');let p=await Notification.requestPermission();toast(p==='granted'?'Notificações ativadas.':'Permissão não concedida.')};
+
+async function maybeNotifyUpcoming(){
+ if(!('Notification'in window)||Notification.permission!=='granted'||!me)return;
+ let now=Date.now(),soon=assignments.filter(a=>a.profile_id===me.id&&a.status!=='declined').map(a=>({a,e:events.find(e=>e.id===a.event_id)})).filter(x=>x.e).filter(x=>{let t=new Date(x.e.event_date+'T'+String(x.e.event_time).slice(0,5)+':00').getTime();return t>now&&t-now<24*3600*1000});
+ let key='voe-notified-'+new Date().toISOString().slice(0,10);
+ if(soon.length&&!localStorage.getItem(key)){new Notification('VOE Music',{body:`Você tem ${soon.length} escala${soon.length>1?'s':''} nas próximas 24 horas.`});localStorage.setItem(key,'1')}
+}
+
+function renderMore(){
+ $('reportsBtn').classList.toggle('hidden',!isManager());
+}
+$('resourcesBtn').onclick=async()=>{
+ let {data,error}=await sb.storage.from('voe-files').list('pdf',{limit:100,sortBy:{column:'created_at',order:'desc'}});
+ if(error)return toast(error.message);
+ $('moreContent').innerHTML=`<div class="card" style="padding:14px"><h3>Arquivos e PDFs</h3>${(data||[]).map(f=>{let url=sb.storage.from('voe-files').getPublicUrl('pdf/'+f.name).data.publicUrl;return `<div class="file-row"><span>📄 ${esc(f.name)}</span><a class="btn ghost" target="_blank" href="${url}">Abrir</a></div>`}).join('')||'<div class="muted">Nenhum PDF.</div>'}</div>`;
+};
+$('reportsBtn').onclick=()=>renderReports();
+async function renderReports(){
+ let rows=people.map(p=>{let pa=assignments.filter(a=>a.profile_id===p.id),confirmed=pa.filter(a=>a.status==='confirmed').length,declined=pa.filter(a=>a.status==='declined').length;return{p,total:pa.length,confirmed,declined}});
+ $('moreContent').innerHTML=`<div class="card" style="padding:14px"><h3>Relatório de participação</h3><table class="report-table"><thead><tr><th>Integrante</th><th>Escalas</th><th>Confirmadas</th><th>Não pôde</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.p.full_name)}</td><td>${r.total}</td><td>${r.confirmed}</td><td>${r.declined}</td></tr>`).join('')}</tbody></table></div>`;
+}
+$('substitutionBtn').onclick=()=>renderMySubstitutions();
+function renderMySubstitutions(){
+ let mine=assignments.filter(a=>a.profile_id===me.id).map(a=>({a,e:events.find(e=>e.id===a.event_id)})).filter(x=>x.e);
+ $('moreContent').innerHTML=`<div class="card" style="padding:14px"><h3>Pedir substituição</h3><label>Escala</label><select id="subAssignSelect">${mine.map(x=>`<option value="${x.a.id}">${esc(x.e.title)} — ${fdate(x.e.event_date)}</option>`).join('')}</select><label>Motivo</label><textarea id="subReason" rows="3"></textarea><button id="sendSubRequest" class="btn primary wide">Enviar pedido</button><h4 style="margin-top:18px">Meus pedidos</h4>${substitutions.filter(s=>s.requester_profile_id===me.id).map(s=>`<div class="sub-card">${esc(s.reason||'Sem motivo')} <span class="pill">${esc(s.status)}</span></div>`).join('')||'<div class="muted">Nenhum pedido.</div>'}</div>`;
+ $('sendSubRequest').onclick=async()=>{let assignment_id=$('subAssignSelect').value,reason=$('subReason').value.trim();if(!assignment_id)return;let{error}=await sb.from('substitution_requests').insert({assignment_id,requester_profile_id:me.id,reason,status:'pending'});if(error)toast(error.message);else{toast('Pedido enviado.');load()}};
+}
+function openSubstitutionForAssignment(assignmentId){show('more',document.querySelector('[data-p=more]'));renderMySubstitutions();setTimeout(()=>{if($('subAssignSelect'))$('subAssignSelect').value=assignmentId},0)}
+
+$('saveProfilePhoto').onclick=async()=>{
+ let file=$('profilePhotoInput').files[0];if(!file)return toast('Escolha uma foto.');
+ let ext=(file.name.split('.').pop()||'jpg').toLowerCase(),path=`avatars/${me.id}.${ext}`;
+ let up=await sb.storage.from('voe-files').upload(path,file,{upsert:true,contentType:file.type||'image/jpeg'});if(up.error)return toast(up.error.message);
+ let url=sb.storage.from('voe-files').getPublicUrl(path).data.publicUrl+'?v='+Date.now();
+ let {error}=await sb.from('profiles').update({avatar_url:url}).eq('id',me.id);if(error)return toast(error.message);me.avatar_url=url;toast('Foto atualizada.');renderProfile();load()
+};
+
+$('themeBtn').onclick=()=>{document.body.classList.toggle('dark');localStorage.setItem('voe-theme',document.body.classList.contains('dark')?'dark':'light')};
+if(localStorage.getItem('voe-theme')==='dark'||(!localStorage.getItem('voe-theme')&&matchMedia('(prefers-color-scheme: dark)').matches))document.body.classList.add('dark');
+
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;$('installBanner').classList.remove('hidden')});
+$('installAppBtn').onclick=async()=>{if(!deferredInstallPrompt)return toast('Use o menu do navegador e escolha “Instalar app”.');deferredInstallPrompt.prompt();await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;$('installBanner').classList.add('hidden')};
+
+
+function renderEditMemberInstrumentChecks(selected=[]){
+ $('editMemberInstruments').innerHTML=INSTRUMENTS.map(inst=>`<label><input type="checkbox" value="${esc(inst)}" ${selected.includes(inst)?'checked':''}>${esc(inst)}</label>`).join('');
+}
+function openMemberEditor(id){
+ if(!isManager())return;
+ let p=people.find(x=>x.id===id);if(!p)return;
+ $('editMemberId').value=p.id;
+ $('editMemberTitle').textContent=p.full_name||'Integrante';
+ $('editMemberName').value=p.full_name||'';
+ $('editMemberEmail').value=p.email||'';
+ $('editMemberCategory').value=p.category||'instrumento';
+ $('editMemberRole').value=p.default_role||'';
+ renderEditMemberInstrumentChecks(memberInstruments(p));
+ $('editMemberDialog').showModal();
+}
+$('closeEditMember').onclick=()=>$('editMemberDialog').close();
+$('editMemberDialog').addEventListener('cancel',e=>{e.preventDefault();$('editMemberDialog').close()});
+$('saveMemberEdit').onclick=async()=>{
+ let id=$('editMemberId').value;
+ let full_name=$('editMemberName').value.trim(),email=$('editMemberEmail').value.trim().toLowerCase(),category=$('editMemberCategory').value,default_role=$('editMemberRole').value.trim();
+ if(!id||!full_name||!email)return toast('Nome e e-mail são obrigatórios.');
+ let instruments=[...document.querySelectorAll('#editMemberInstruments input:checked')].map(x=>x.value);
+ if(category==='vocal'&&!instruments.includes('Vocal'))instruments.push('Vocal');
+ if(category==='ministro'&&!instruments.includes('Ministro'))instruments.push('Ministro');
+ if(category==='instrumento'&&default_role&&!instruments.includes(default_role))instruments.push(default_role);
+ let {error}=await sb.from('profiles').update({full_name,email,category,default_role,instruments}).eq('id',id);
+ if(error)return toast(error.message);
+ $('editMemberDialog').close();
+ toast('Integrante atualizado.');
+ await load();
+};
+
+async function openEventEditor(id){
+ if(!isManager())return;
+ let {data,error}=await sb.rpc('acquire_event_lock',{target_event:id});
+ if(error)return toast(error.message);
+ if(!data){toast('Esta escala está sendo editada por outro administrador.');return}
+ let e=events.find(x=>x.id===id);if(!e)return;
+ $('editEventId').value=id;$('editTitle').value=e.title||'';$('editDate').value=e.event_date||'';$('editTime').value=String(e.event_time||'').slice(0,5);$('editLocation').value=e.location||'';$('editNotes').value=e.notes||'';
+ $('editEventHeading').textContent=e.title;$('editEventDialog').showModal();
+}
+async function releaseCurrentLock(){
+ let id=$('editEventId').value;if(id)await sb.rpc('release_event_lock',{target_event:id});$('editEventId').value='';
+}
+$('closeEditEvent').onclick=async()=>{await releaseCurrentLock();$('editEventDialog').close()};
+$('editEventDialog').addEventListener('cancel',async e=>{e.preventDefault();await releaseCurrentLock();$('editEventDialog').close()});
+$('saveEventEdit').onclick=async()=>{
+ let id=$('editEventId').value;if(!id)return;
+ let patch={title:$('editTitle').value.trim(),event_date:$('editDate').value,event_time:$('editTime').value,location:$('editLocation').value.trim(),notes:$('editNotes').value.trim()};
+ if(!patch.title||!patch.event_date||!patch.event_time)return toast('Preencha título, data e horário.');
+ let {error}=await sb.from('events').update(patch).eq('id',id);
+ if(error)return toast(error.message);
+ await releaseCurrentLock();$('editEventDialog').close();toast('Escala atualizada.');load();
+};
+$('loadAudit').onclick=loadAudit;
+async function loadAudit(){
+ if(!isManager())return;
+ let {data,error}=await sb.from('audit_log').select('*,actor:profiles!audit_log_actor_profile_id_fkey(full_name)').order('created_at',{ascending:false}).limit(80);
+ if(error)return toast(error.message);
+ $('auditList').innerHTML=(data||[]).map(a=>`<div class="audit"><b>${esc(a.actor?.full_name||'Sistema')}</b> • ${esc(a.action)} <span class="pill">${esc(a.entity_type)}</span><div class="muted">${new Date(a.created_at).toLocaleString('pt-BR')}</div></div>`).join('')||'<div class="muted">Nenhuma alteração registrada.</div>';
+}
+
+function subscribe(){sb.channel('voe').on('postgres_changes',{event:'*',schema:'public',table:'events'},load).on('postgres_changes',{event:'*',schema:'public',table:'assignments'},load).on('postgres_changes',{event:'*',schema:'public',table:'profiles'},load).on('postgres_changes',{event:'*',schema:'public',table:'messages'},load).on('postgres_changes',{event:'*',schema:'public',table:'profiles'},load).on('postgres_changes',{event:'*',schema:'public',table:'notifications'},load).on('postgres_changes',{event:'*',schema:'public',table:'substitution_requests'},load).subscribe()}
+sb.auth.onAuthStateChange(async(event,session)=>{
+  if(event==='PASSWORD_RECOVERY'){ $('app').classList.add('hidden');$('auth').classList.remove('hidden');showAuth('reset');authMsg('Crie uma nova senha para sua conta.') }
+  if(event==='SIGNED_OUT'){me=null}
+});
+sb.auth.getSession().then(x=>{if(x.data.session)start()});
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('/sw.js'));
+</script></body></html>
